@@ -1,5 +1,5 @@
 {
-  "name": "git-directory-deploy",
+  "name": "@hswolff/git-directory-deploy",
   "version": "0.5.0",
   "description": "easily deploy a folder to a git branch",
   "main": "index.js",

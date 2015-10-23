@@ -6,7 +6,7 @@ Easily deploy a directory to a git branch. Primarily of value when deploying to 
 ## Installation
 
 ```shell
-npm install -g git-directory-deploy
+npm install -g @hswolff/git-directory-deploy
 ```
 
 ## Setup
@@ -31,7 +31,8 @@ gdd --branch master --src _site --remote origin # passing in values
 ### Example CLI Usage
 
 ```javascript
-var gdd = require('git-directory-deploy');
+var gdd = require('@hswolff/git-directory-deploy');
+
 gdd({
   verbose: true,
   branch: 'master',
