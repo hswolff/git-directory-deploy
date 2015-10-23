@@ -4,7 +4,7 @@ var defaultLogOutput = false;
 
 var defaultExecOptions = {
   cwd: process.cwd()
-}
+};
 
 function exec() {
   var args = Array.prototype.slice.call(arguments);
