@@ -21,5 +21,5 @@ module.exports = function(options) {
   // What directory to run our child_process commands from by default.
   options.cwd = options.cwd || process.cwd();
 
-  require('./src/index')(options);
+  return require('./src/index')(options);
 };

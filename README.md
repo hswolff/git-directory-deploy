@@ -37,7 +37,9 @@ gdd({
   verbose: true,
   branch: 'master',
   src: '_site'
-});
+}).then(function() {
+  console.log('Completed');
+})
 ```
 
 
