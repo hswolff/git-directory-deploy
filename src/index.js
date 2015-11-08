@@ -4,12 +4,16 @@ const fs = require('fs-extra');
 const exec = require('./exec').exec;
 const execLater = require('./exec').execLater;
 const configureExec = require('./exec').configure;
+const log = require('./log').log;
+const configureLog = require('./log').configure;
 
 var options = {};
 
 var gitInformation = {};
 
 function getGitInformation() {
+  log('getGitInformation');
+
   return exec('git log -n 1 --format="%H" HEAD')
     // Get current branch commit hash.
     .then(hash => gitInformation.hash = hash)
@@ -22,10 +26,14 @@ function getGitInformation() {
 }
 
 function checkoutOriginalBranch() {
+  log('checkoutOriginalBranch');
+
   return exec(`git checkout ${gitInformation.branch}`);
 }
 
 function checkoutDeployBranch() {
+  log('checkoutDeployBranch');
+
   return exec(`git checkout ${options.branch}`).then(
     () => {
 
@@ -44,6 +52,8 @@ function checkoutDeployBranch() {
 }
 
 function createGitBranch() {
+  log('createGitBranch');
+
   return exec(`git checkout --orphan ${options.branch}`)
     .then(execLater(`git rm --cached -r . `))
     .then(execLater(`git add .gitignore`))
@@ -56,11 +66,15 @@ function createGitBranch() {
 }
 
 function makeDeployBranchClean() {
+  log('makeDeployBranchClean');
+
   return exec(`cp .gitignore ${options.src}/.gitignore`)
     .then(execLater('git rm -rf .'));
 }
 
 function copyFiles() {
+  log('copyFiles');
+
   function filePath(fileName) {
     return path.resolve(process.cwd(), fileName);
   }
@@ -82,6 +96,8 @@ function copyFiles() {
 }
 
 function addAndCommitToGit() {
+  log('addAndCommitToGit');
+
   var commitMessage = `deploy: ${gitInformation.title}
 
   generated from commit ${gitInformation.hash}`;
@@ -99,12 +115,14 @@ function addAndCommitToGit() {
 }
 
 function pushBranchToRemote() {
+  log('pushBranchToRemote');
   return exec(`git push ${options.remote} ${options.branch}`);
 }
 
 function main(opts) {
   options = opts;
 
+  configureLog(opts);
   configureExec(opts);
 
   return getGitInformation()
