@@ -1,17 +1,13 @@
 #!/usr/bin/env node
 
-var argv = require('minimist')(process.argv.slice(2), {
-  string: [
-    'branch',
-    'remote',
-    'src',
-    'target'
-  ]
-});
+var program = require('commander');
 
-if (argv.v) {
-  argv.verbose = argv.v;
-  delete argv.v;
-}
+program
+  .option('-s, --src [source]', 'Source folder.')
+  .option('-t, --target [target]', 'Target folder.')
+  .option('-b, --branch [branch]', 'Branch to deploy.')
+  .option('-r, --remote [remote]', 'Git remote to push changes to.')
+  .option('-v, --verbose', 'Enable verbose mode.')
+  .parse(process.argv);
 
-require('../index')(argv);
+require('../index')(program);

@@ -25,8 +25,8 @@
     "node": ">=4.0.0"
   },
   "dependencies": {
-    "fs-extra": "^0.24.0",
-    "minimist": "^1.2.0"
+    "commander": "^2.9.0",
+    "fs-extra": "^0.24.0"
   },
   "devDependencies": {
     "eslint": "^1.7.3"

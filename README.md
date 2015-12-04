@@ -2,7 +2,6 @@
 
 Easily deploy a directory to a git branch. Primarily of value when deploying to GitHub pages, however this module makes no hard-coded assumption as to what branch you want to deploy to.
 
-
 ## Installation
 
 ```shell
@@ -13,12 +12,13 @@ npm install -g @hswolff/git-directory-deploy
 
 `git-directory-deploy` makes one assumption about your git repo when you use it. Namely that the `src` folder is in your `.gitignore` file. Usually this is content that is derived from source files, and as such tends to be .gitignored'd.
 
-
 ## Usage
 
 This tool can be used via the CLI or programmatically. The options that you can set for either usage are the same.
 
 [Documentation for all options can be found in the source code.](index.js)
+
+You can also see all CLI flags via: `gdd --help`.
 
 ### Example CLI Usage
 
@@ -41,7 +41,6 @@ gdd({
   console.log('Completed');
 })
 ```
-
 
 ## Acknowledgements
 
