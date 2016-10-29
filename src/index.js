@@ -98,7 +98,7 @@ function copyFiles() {
 function addAndCommitToGit() {
   log('addAndCommitToGit');
 
-  var commitMessage = `deploy: ${gitInformation.title}
+  var commitMessage = `chore: ${gitInformation.title}
 
   generated from commit ${gitInformation.hash}`;
 
